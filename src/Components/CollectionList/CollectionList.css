@@ -1,0 +1,39 @@
+.col{
+    padding-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+
+.btn.btn-secondary {
+    margin-top: 20px;
+    margin-left: 5%;
+    background-color: #141d22;
+}
+
+.btn-danger {
+    float: right;
+}
+
+.btn-info {
+    color: white;
+}
+
+.btn-info:hover {
+    color: white;
+}
+
+.card-link {
+    padding: 0;
+    margin-left: 3%;
+    text-decoration: none;
+    color: #141d22;
+}
+
+
+
+
+
+
+
+
