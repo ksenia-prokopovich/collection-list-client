@@ -1,0 +1,13 @@
+.collection-item-list {
+    margin: 20px 20%;
+
+    .-add {
+        margin-bottom: 20px;
+    }
+
+    .actions {
+        display: flex;
+        margin: 5px 10px;
+        flex-direction: row-reverse;
+    }
+}

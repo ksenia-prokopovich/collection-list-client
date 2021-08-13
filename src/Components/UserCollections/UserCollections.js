@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserCollections.css';
+import './UserCollections.scss';
 
 class UserCollections extends React.Component {
 
@@ -26,21 +26,24 @@ class UserCollections extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div className="collection-item-list">
             <a href={"/#/" + this.state.collectionId + "/add"}>
-                <button type="button" className="btn btn-secondary">Add</button>
+                <button type="button" className="btn btn-secondary -add">Add</button>
             </a>
             {this.state.userCollections.map(userCollections =>
             <div className="card mb-3">
                 <div className="row g-0">
                         <div>
-                            <div className="col-md-4">
-                                <img src="..." className="img-fluid rounded-start" alt="..."/>
-                            </div>
-                            <div className="col-md-8">
+                            {/*<div className="col-md-8">*/}
+                            {/*    <img src="..." className="img-fluid rounded-start" alt="..."/>*/}
+                            {/*</div>*/}
+                            <div>
                                 <div className="card-body">
                                     <h5 className="card-title">{userCollections.title}</h5>
                                     <p className="card-text">{userCollections.description}</p>
+                                </div>
+
+                                <div className="actions">
                                     <button type="button" className="btn btn-danger" onClick={(id) => this.delete(userCollections.id)}>Delete</button>
                                 </div>
                             </div>

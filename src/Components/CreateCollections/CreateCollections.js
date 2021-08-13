@@ -1,5 +1,5 @@
 import React from 'react';
-import './CreateCollections.css';
+import './CreateCollections.scss';
 
 class CreateCollections extends React.Component {
     constructor(props) {

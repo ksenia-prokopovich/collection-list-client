@@ -1,3 +1,24 @@
 body {
   background-color: #f8f9fa;
 }
+
+.btn-primary {
+  background-color: #141d22;
+  border: #141d22;
+}
+
+.btn.btn-secondary {
+  background-color: #141d22;
+}
+
+.btn-danger {
+  float: right;
+}
+
+.btn-info {
+  color: white;
+}
+
+.btn-info:hover {
+  color: white;
+}

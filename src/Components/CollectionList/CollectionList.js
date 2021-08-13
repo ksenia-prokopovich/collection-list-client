@@ -1,5 +1,5 @@
 import React from 'react';
-import './CollectionList.css';
+import './CollectionList.scss';
 
 
 class CollectionList extends React.Component {
@@ -46,12 +46,12 @@ class CollectionList extends React.Component {
 
 
     render() {
-        return <div>
+        return <div className="collection-list container">
             <button type="button" className="btn btn-secondary" onClick={this.add.bind(this)}>Create...</button>
                 <div className="col">
                     {this.state.collections.map(collection =>(
                     <div className="card">
-                        <img src="..." className="card-img-top" alt="..."/>
+                        {/*<img src="..." className="card-img-top" alt="..."/>*/}
                             <div className="card-body">
                                         <h5 className="card-title">{collection.title}</h5>
                                         <p className="card-text">{collection.description}</p>

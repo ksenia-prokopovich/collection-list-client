@@ -1,0 +1,44 @@
+.collection-header {
+    .navbar {
+        background-color: #141d22 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar-brand {
+        margin-left: 100px;
+        font-weight: bold;
+        color: #00deff !important;
+    }
+
+    .navbar-nav {
+        margin-right: 100px;
+        align-items: center;
+    }
+
+    .navbar-collapse {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .user-nav {
+        display: flex;
+        list-style: none;
+        margin-top: 10px;
+        padding-right: 6%;
+        text-decoration: none;
+    }
+
+    .btn-outline-success {
+        color: #00deff;
+        border-color: #00deff;
+    }
+
+    .btn-outline-success:hover {
+        color: #141d22;
+        background-color: #00deff;
+        border-color: #00deff;
+    }
+}

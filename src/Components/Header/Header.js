@@ -1,9 +1,9 @@
 import React from 'react';
-import './Header.css';
+import './Header.scss';
 
 class Header extends React.Component {
     render() {
-     return <div>
+     return <div className="collection-header">
          <nav className="navbar navbar-expand-lg navbar-light bg-light">
              <a className="navbar-brand" href={"/"}>My collection</a>
              <form className="d-flex">
