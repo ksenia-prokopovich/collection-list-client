@@ -9,9 +9,9 @@ class AddCollectionItem extends React.Component {
         this.state = {
             title: '',
             description: '',
-            collectionId: props.match.params.id
+            id: props.match.params.id
         }
-        if (this.state.collectionId) {
+        if (this.state.id) {
             this.loadCollectionItem()
         }
     }
@@ -30,12 +30,12 @@ class AddCollectionItem extends React.Component {
         })
             .then(() => {
                 window.open(process.env.PUBLIC_URL + "/#/items", '_self')
-                // document.location.reload();
+                document.location.reload();
             });
     }
 
     edit() {
-        fetch('http://localhost:8000/collections/items/edit-items/' + this.state.collectionId, {
+        fetch('http://localhost:8000/collections/items/edit-items/' + this.state.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ class AddCollectionItem extends React.Component {
     }
 
     onSave() {
-        if (this.state.collectionId) {
+        if (this.state.id) {
             this.edit();
         } else  {
             this.add();
@@ -61,7 +61,7 @@ class AddCollectionItem extends React.Component {
 
 
     loadCollectionItem() {
-        fetch('http://localhost:8000/collections/items/' + this.state.collectionId)
+        fetch('http://localhost:8000/collections/items/' + this.state.id)
             .then(response => response.json())
             .then(item => this.setState({...this.state, ...item}))
     }
