@@ -2,26 +2,56 @@ import React from 'react';
 import './Header.scss';
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.onApplyTheme();
+    }
+
+    onDark() {
+        localStorage.setItem('theme', 'dark');
+        this.onApplyTheme();
+    }
+
+    onLight() {
+        localStorage.setItem('theme', 'light');
+        this.onApplyTheme();
+    }
+
+    onApplyTheme() {
+        document.body.className = localStorage.getItem('theme') === 'dark' ? `theme-dark` : `theme-light`
+    }
+
     render() {
-     return <div className="collection-header">
-         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-             <a className="navbar-brand" href={"/"}>My collection</a>
-             <form className="d-flex">
-                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                     <button className="btn btn-outline-success" type="submit">Search</button>
-             </form>
-             <div className="collapse navbar-collapse" id="navbarNav">
-                 <ul className="user-nav">
-                     <li className="nav-item">
-                         <a className="nav-link" href={"/#/sing-in"}>Log In</a>
-                     </li>
-                     <li className="nav-item">
-                         <a className="nav-link" href={"/#/sing-up"}>Sing Up</a>
-                     </li>
-                 </ul>
-             </div>
-         </nav>
-     </div>
+        return <div className="collection-header">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <a className="navbar-brand" href={"/"}>My collection</a>
+                <form className="d-flex">
+                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <button className="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="user-nav">
+                        <div className="dropdown">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Theme
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><button className="dropdown-item" type="button" onClick={this.onDark.bind(this)}>Dark</button></li>
+                                <li><button className="dropdown-item" type="button" onClick={this.onLight.bind(this)}>Light</button></li>
+                            </ul>
+                        </div>
+                        <li className="nav-item">
+                            <a className="nav-link" href={"/#/sing-in"}>Log In</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href={"/#/sing-up"}>Sing Up</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     }
 }
 

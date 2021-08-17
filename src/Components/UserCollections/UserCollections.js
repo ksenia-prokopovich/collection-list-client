@@ -42,9 +42,9 @@ class UserCollections extends React.Component {
                                     <h5 className="card-title">{userCollections.title}</h5>
                                     <p className="card-text">{userCollections.description}</p>
                                 </div>
-
                                 <div className="actions">
                                     <button type="button" className="btn btn-danger" onClick={(id) => this.delete(userCollections.id)}>Delete</button>
+                                    <a href={"/#/" + this.state.collectionId + "/edit-items"}><button type="button" className="btn btn-link">Edit</button></a>
                                 </div>
                             </div>
                         </div>

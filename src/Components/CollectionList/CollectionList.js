@@ -44,23 +44,25 @@ class CollectionList extends React.Component {
             });
     }
 
-
     render() {
         return <div className="collection-list container">
             <button type="button" className="btn btn-secondary" onClick={this.add.bind(this)}>Create...</button>
+                {this.state.collections.map(collection =>(
                 <div className="col">
-                    {this.state.collections.map(collection =>(
                     <div className="card">
                         {/*<img src="..." className="card-img-top" alt="..."/>*/}
                             <div className="card-body">
                                         <h5 className="card-title">{collection.title}</h5>
                                         <p className="card-text">{collection.description}</p>
-                                <a className="card-link" href={"/#/" + collection.id + "/items"}>All collection...</a>
-                                <button type="button" className="btn btn-danger" onClick={(id) => this.delete(collection.id)}>Delete</button>
+                                <div className="actions">
+                                    <button type="button" className="btn btn-danger" onClick={(id) => this.delete(collection.id)}>Delete</button>
+                                    <a href={"/#/edit-collection/" + collection.id}><button type="button" className="btn btn-link">Edit</button></a>
+                                    <a className="card-link list-link" href={"/#/" + collection.id + "/items"}>All collection...</a>
+                                </div>
                             </div>
                     </div>
-                    ))}
                 </div>
+                ))}
             </div>
     }
 }

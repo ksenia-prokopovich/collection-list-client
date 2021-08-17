@@ -1,30 +1,23 @@
 import React from 'react';
-import './CreateCollections.scss';
+import './AddCollectionItem.scss';
+import {handleErrors} from "../../utils/error-handler";
 
-class CreateCollections extends React.Component {
+
+class AddCollectionItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.match.params.id,
             title: '',
             description: '',
+            collectionId: props.match.params.id
         }
-
-        if (this.state.id) {
-            this.loadItem()
-        }
-    }
-
-    onSave() {
-        if (this.state.id) {
-            this.edit();
-        } else  {
-            this.add();
+        if (this.state.collectionId) {
+            this.loadCollectionItem()
         }
     }
 
     add() {
-        fetch('http://localhost:8000/collections/add', {
+        fetch('http://localhost:8000/collections/items/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,17 +25,17 @@ class CreateCollections extends React.Component {
             body: JSON.stringify({
                 title: this.state.title,
                 description: this.state.description,
-                userId: JSON.parse(localStorage.getItem('user')).id
+                collectionId: this.state.collectionId
             }),
         })
             .then(() => {
                 window.open(process.env.PUBLIC_URL + "/#/items", '_self')
-                document.location.reload();
+                // document.location.reload();
             });
-    };
+    }
 
     edit() {
-        fetch('http://localhost:8000/collections/edit/' + this.state.id, {
+        fetch('http://localhost:8000/collections/items/edit-items/' + this.state.collectionId, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,14 +45,23 @@ class CreateCollections extends React.Component {
                 description: this.state.description,
             }),
         })
+            .then(response => handleErrors(response))
             .then(() => {
-                window.open(process.env.PUBLIC_URL + "/#", '_self')
-                //document.location.reload();
+                this.props.history.push(process.env.PUBLIC_URL + "/#/items")
             });
     }
 
-    loadItem() {
-        fetch('http://localhost:8000/collections/' + this.state.id)
+    onSave() {
+        if (this.state.collectionId) {
+            this.edit();
+        } else  {
+            this.add();
+        }
+    }
+
+
+    loadCollectionItem() {
+        fetch('http://localhost:8000/collections/items/' + this.state.collectionId)
             .then(response => response.json())
             .then(item => this.setState({...this.state, ...item}))
     }
@@ -88,7 +90,7 @@ class CreateCollections extends React.Component {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputDescription">Description</label>
-                    <textarea rows="5" value={this.state.description} className=" form-control" id=" exampleInputTitle"
+                    <textarea rows="5" value={this.state.description} className="form-control" id=" exampleInputTitle"
                               name=" content" onChange={this.descriptionChange.bind(this)}/>
                 </div>
                 <button type="submit" className=" btn btn-dark" onClick={this.onSave.bind(this)}>Save</button>
@@ -97,5 +99,4 @@ class CreateCollections extends React.Component {
     }
 }
 
-
-export default CreateCollections;
+export default AddCollectionItem;

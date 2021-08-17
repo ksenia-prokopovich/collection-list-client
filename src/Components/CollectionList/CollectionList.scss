@@ -1,15 +1,35 @@
 .collection-list {
     .col{
-        padding-top: 20px;
+        padding-top: 10px;
         padding-left: 5%;
         padding-right: 5%;
 
     }
 
     .card-link {
-        padding: 0;
         text-decoration: none;
         color: #1f5eaa;
+        padding: 7px 0;
+    }
+
+    .btn-secondary {
+        margin: 20px 5%;
+    }
+
+    .btn-link {
+        text-decoration: none;
+        color: #1f5eaa;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: row-reverse;
+        padding-bottom: 10px;
+    }
+
+    .list-link {
+        flex: auto;
+        padding-left: 0;
     }
 }
 
