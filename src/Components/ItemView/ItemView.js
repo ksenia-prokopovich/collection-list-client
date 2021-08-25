@@ -12,10 +12,11 @@ class ItemView extends React.Component {
             title: '',
             description: '',
             createdAt: '',
-            userId: JSON.parse(localStorage.getItem('user')).id,
+            userId: localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).id,
             id: props.match.params.id,
             collectionId: props.match.params.collectionId,
             likes: [],
+            user: localStorage.getItem("user")
         };
     }
 
@@ -69,25 +70,22 @@ class ItemView extends React.Component {
         return <div className="collection-item-view">
             <div className="card mb-3">
                 <div className="row g-0">
-                    <div>
-                        <div>
-                            <div className="card-body">
-                                <h5 className="card-title">{this.state.title}</h5>
-                                <p className="card-text">{this.state.description}</p>
-                                <p className="card-text-date">{new Date(this.state.createdAt).toDateString()}</p>
-                                <div className="actions">
-                                    <div className="actions2">
-                                        <a href={"/" + this.state.id + "/edit-items"} ><i className="bi bi-gear-fill"> </i></a>
-                                        <i className="bi bi-trash" onClick={() => this.delete(this.state.id)}> </i>
-                                    </div>
-                                    <i className={ this.hasLike(this.state.userId) ? 'bi bi-heart-fill -active' : 'bi bi-heart-fill'} onClick={this.like.bind(this)}>{this.state.likes.length}</i>
-                                </div>
+                    <div className="card-body">
+                        <h5 className="card-title">{this.state.title}</h5>
+                        <p className="card-text">{this.state.description}</p>
+                        <p className="card-text-date">{new Date(this.state.createdAt).toDateString()}</p>
+                        {this.state.user && <div className="actions">
+                            <div className="actions2">
+                                <a href={"/" + this.state.id + "/edit-items"}><i className="bi bi-gear-fill"> </i></a>
+                                <i className="bi bi-trash" onClick={() => this.delete(this.state.id)}> </i>
                             </div>
-                        </div>
+                            <i className={this.hasLike(this.state.userId) ? 'bi bi-heart-fill -active' : 'bi bi-heart-fill'}
+                               onClick={this.like.bind(this)}>{this.state.likes.length}</i>
+                        </div>}
                     </div>
                 </div>
             </div>
-            <Comments id={this.state.id}/>
+            {this.state.user && <Comments id={this.state.id}/>}
         </div>
     }
 }

@@ -43,14 +43,15 @@ class UserCollections extends React.Component {
                                         className="card-title">{item.title}</h5></a>
                                     <p className="card-text">{item.description}</p>
                                 </div>
-                                    <div className="actions">
-                                        {this.state.user && <button type="button" className="btn btn-danger"
-                                                onClick={() => this.delete(item.id)}>Delete
-                                        </button>}
-                                        <a href={"/" + item.id + "/edit-items"}>
-                                            {this.state.user && <button type="button" className="btn btn-link">Edit</button>}
-                                        </a>
-                                    </div>
+                                <div className="actions">
+                                    {this.state.user && <button type="button" className="btn btn-danger"
+                                                                onClick={() => this.delete(item.id)}>Delete
+                                    </button>}
+                                    <a href={"/" + item.id + "/edit-items"}>
+                                        {this.state.user &&
+                                        <button type="button" className="btn btn-link">Edit</button>}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

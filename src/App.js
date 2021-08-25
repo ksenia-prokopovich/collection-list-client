@@ -31,7 +31,7 @@ class App extends React.Component {
                     {!this.state.user && <Route path="/sing-up" component={Registration}/>}
                     {!this.state.user && <Route path="/sing-in" component={Login}/>}
                     {this.state.user && <Route path="/:collectionId/add" component={AddCollectionItem}/>}
-                    {this.state.user && <Route path="/:collectionId/items/:id" component={ItemView}/>}
+                    <Route path="/:collectionId/items/:id" component={ItemView}/>
                     {this.state.user && <Route path="/create-collections" component={CreateCollections}/>}
                     {this.state.user && <Route path="/:id/edit-collection" component={CreateCollections}/>}
                     {this.state.user && <Route path="/:id/edit-items" component={AddCollectionItem}/>}
