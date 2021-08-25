@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
 body {
   background-color: #f8f9fa;
   height: 100vh;
@@ -5,12 +7,6 @@ body {
 
 .content, #root {
   height: 100%;
-}
-
-
-.btn-primary {
-  background-color: #141d22;
-  border: #141d22;
 }
 
 .btn.btn-secondary {
@@ -28,7 +24,6 @@ body {
 .btn-info:hover {
   color: white;
 }
-
 
 .theme-dark * {
   background: rgba(20, 29, 34, 0.84) !important;

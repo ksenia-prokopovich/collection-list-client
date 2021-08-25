@@ -6,7 +6,8 @@ class CollectionList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            collections: []
+            collections: [],
+            user: localStorage.getItem("user")
         };
         this.loadCollections()
     }
@@ -39,14 +40,13 @@ class CollectionList extends React.Component {
             body: JSON.stringify({title: this.state.title, description: this.state.description}),
         })
             .then(() => {
-                window.open(process.env.PUBLIC_URL + "/#/create-collections", '_self')
-                document.location.reload();
+                window.open("/create-collections", '_self')
             });
     }
 
     render() {
         return <div className="collection-list container">
-            <button type="button" className="btn btn-secondary" onClick={this.add.bind(this)}>Create...</button>
+            {this.state.user && <button type="button" className="btn btn-secondary" onClick={this.add.bind(this)}>Create...</button>}
                 {this.state.collections.map(collection =>(
                 <div className="col">
                     <div className="card">
@@ -55,9 +55,9 @@ class CollectionList extends React.Component {
                                         <h5 className="card-title">{collection.title}</h5>
                                         <p className="card-text">{collection.description}</p>
                                 <div className="actions">
-                                    <button type="button" className="btn btn-danger" onClick={(id) => this.delete(collection.id)}>Delete</button>
-                                    <a href={"/#/edit-collection/" + collection.id}><button type="button" className="btn btn-link">Edit</button></a>
-                                    <a className="card-link list-link" href={"/#/" + collection.id + "/items"}>All collection...</a>
+                                    {this.state.user && <button type="button" className="btn btn-danger" onClick={(id) => this.delete(collection.id)}>Delete</button>}
+                                    {this.state.user && <a href={"/" + collection.id + "/edit-collection"}><button type="button" className="btn btn-link">Edit</button></a>}
+                                    <a className="card-link list-link" href={"/" + collection.id + "/items"}>All collection...</a>
                                 </div>
                             </div>
                     </div>

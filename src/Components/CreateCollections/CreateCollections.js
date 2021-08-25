@@ -1,5 +1,6 @@
 import React from 'react';
 import './CreateCollections.scss';
+import {handleErrors} from "../../utils/error-handler";
 
 class CreateCollections extends React.Component {
     constructor(props) {
@@ -36,13 +37,12 @@ class CreateCollections extends React.Component {
             }),
         })
             .then(() => {
-                window.open(process.env.PUBLIC_URL + "/#/items", '_self')
-                document.location.reload();
+                this.props.history.push(`/`)
             });
     };
 
     edit() {
-        fetch('http://localhost:8000/collections/edit/' + this.state.id, {
+        fetch('http://localhost:8000/collections/edit-collection/' + this.state.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,9 +52,9 @@ class CreateCollections extends React.Component {
                 description: this.state.description,
             }),
         })
+            .then(response => handleErrors(response))
             .then(() => {
-                window.open(process.env.PUBLIC_URL + "/#", '_self')
-                //document.location.reload();
+               this.props.history.push("/")
             });
     }
 
@@ -80,7 +80,6 @@ class CreateCollections extends React.Component {
 
     render() {
         return <div className="form-collection container">
-            <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputTitle">Title</label>
                     <input type="text" value={this.state.title} className="form-control" id="exampleInputTitle"
@@ -91,8 +90,7 @@ class CreateCollections extends React.Component {
                     <textarea rows="5" value={this.state.description} className=" form-control" id=" exampleInputTitle"
                               name=" content" onChange={this.descriptionChange.bind(this)}/>
                 </div>
-                <button type="submit" className=" btn btn-dark" onClick={this.onSave.bind(this)}>Save</button>
-            </form>
+                <button type="submit" className=" btn btn-secondary" onClick={this.onSave.bind(this)}>Save</button>
         </div>
     }
 }

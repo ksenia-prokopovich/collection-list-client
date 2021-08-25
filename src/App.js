@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { HashRouter as Router } from 'react-router-dom'
-//import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Header from './Components/Header/Header';
 import { Switch, Route } from 'react-router-dom';
 import CollectionList from "./Components/CollectionList/CollectionList";
@@ -11,11 +10,12 @@ import NotFound from "./Components/Not-found/Not-found";
 import AddCollectionItem from "./Components/AddCollection/AddCollectionItem";
 import UserCollections from "./Components/UserCollections/UserCollections";
 import CreateCollections from "./Components/CreateCollections/CreateCollections";
+import ItemView from "./Components/ItemView/ItemView";
 
 
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             user: localStorage.getItem('user')
         }
@@ -27,13 +27,14 @@ class App extends React.Component {
             <Router basename={process.env.PUBLIC_URL}>
                 <Switch>
                     <Route exact path="/" component={CollectionList}/>
-                    <Route path="/sing-up" component={Registration} />
-                    <Route path="/sing-in" component={Login}/>
-                    <Route path="/:id/add" component={AddCollectionItem}/>
-                    <Route path="/:id/items" component={UserCollections}/>
-                    <Route path="/create-collections" component={CreateCollections}/>
-                    <Route path="/edit-collection/:id" component={CreateCollections}/>
-                    <Route path="/:id/edit-items" component={AddCollectionItem}/>
+                    <Route exact path="/:collectionId/items" component={UserCollections}/>
+                    {!this.state.user && <Route path="/sing-up" component={Registration}/>}
+                    {!this.state.user && <Route path="/sing-in" component={Login}/>}
+                    {this.state.user && <Route path="/:collectionId/add" component={AddCollectionItem}/>}
+                    {this.state.user && <Route path="/:collectionId/items/:id" component={ItemView}/>}
+                    {this.state.user && <Route path="/create-collections" component={CreateCollections}/>}
+                    {this.state.user && <Route path="/:id/edit-collection" component={CreateCollections}/>}
+                    {this.state.user && <Route path="/:id/edit-items" component={AddCollectionItem}/>}
                     <Route component={NotFound}/>
                 </Switch>
             </Router>

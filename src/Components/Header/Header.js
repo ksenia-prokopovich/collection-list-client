@@ -4,7 +4,9 @@ import './Header.scss';
 class Header extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            user: localStorage.getItem("user")
+        }
         this.onApplyTheme();
     }
 
@@ -22,6 +24,11 @@ class Header extends React.Component {
         document.body.className = localStorage.getItem('theme') === 'dark' ? `theme-dark` : `theme-light`
     }
 
+    logOut() {
+        localStorage.removeItem("user")
+        window.open('/sing-in', '_self')
+    }
+
     render() {
         return <div className="collection-header">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,7 +41,7 @@ class Header extends React.Component {
                     <ul className="user-nav">
                         <div className="dropdown">
                             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    data-bs-toggle="dropdown" aria-expanded="false"><a className="bi bi-moon"></a>
                                 Theme
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -42,12 +49,19 @@ class Header extends React.Component {
                                 <li><button className="dropdown-item" type="button" onClick={this.onLight.bind(this)}>Light</button></li>
                             </ul>
                         </div>
-                        <li className="nav-item">
-                            <a className="nav-link" href={"/#/sing-in"}>Log In</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href={"/#/sing-up"}>Sing Up</a>
-                        </li>
+                        {!this.state.user && <div className="auth-actions">
+                            <li className="nav-item">
+                                <a className="nav-link" href={"/sing-in"}>Log In</a>
+                            </li>
+                            <li className="nav-item">
+                            <a className="nav-link" href={"/sing-up"}>Sing Up</a>
+                            </li>
+                        </div>}
+                        {this.state.user && <div>
+                            <li className="nav-item">
+                                <a className="nav-link" onClick={this.logOut.bind(this)}>Log Out</a>
+                            </li>
+                        </div>}
                     </ul>
                 </div>
             </nav>

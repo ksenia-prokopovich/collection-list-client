@@ -1,0 +1,43 @@
+.collection-comment {
+  .mb-3-comment {
+    margin-top: 20px;
+  }
+
+  .form-label {
+    font-weight: bold;
+  }
+
+  .actions-comment {
+    margin-top: 15px;
+  }
+
+  .card-body-comment {
+    box-shadow: 0 8px 30px 0 rgba(0,0,0,0.15);
+    background-color: white;
+    border: 1px solid rgba(203, 201, 201, 0.62);
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .card-title {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .user-name {
+    flex: auto;
+  }
+
+  .trash {
+    padding: 1px 2px;
+    border: none;
+  }
+
+  .form-control {
+    box-shadow: 0 8px 30px 0 rgba(0,0,0,0.15);
+  }
+
+  .card-body {
+    box-shadow: 0 8px 30px 0 rgba(0,0,0,0.15);
+  }
+}

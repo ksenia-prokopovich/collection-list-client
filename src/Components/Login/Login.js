@@ -24,10 +24,8 @@ class Login extends React.Component {
             .then(response => handleErrors(response))
             .then(response => response.json())
             .then((response) => {
-                console.log(response)
                 localStorage.setItem("user", JSON.stringify(response))
-                window.open(process.env.PUBLIC_URL + "/#", '_self')
-                document.location.reload();
+                window.open('/', '_self')
             })
             .catch(() => {
                 this.setState({ ...this.state, hasError: true })
@@ -50,7 +48,6 @@ class Login extends React.Component {
 
     render() {
         return <div className='login container'>
-            <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                     <input type="email" value={this.state.email} onChange={this.emailChange.bind(this)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
@@ -61,8 +58,7 @@ class Login extends React.Component {
                 </div>
                 {this.state.hasError && (<div className="alert alert-danger" role="alert">
                     Your email or password is incorrect!</div>)}
-                <button type="submit" className="btn btn-primary" onClick={this.singIn.bind(this)}>Sing In</button>
-            </form>
+                <button type="submit" className="btn btn-secondary" onClick={this.singIn.bind(this)}>Sing In</button>
         </div>
     }
 }

@@ -1,0 +1,52 @@
+.collection-item-view {
+    margin: 40px 20%;
+
+    .mb-3-comment {
+        margin-top: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .actions-comment {
+        margin-top: 15px;
+    }
+
+    .card-body {
+        box-shadow: 0 8px 30px 0 rgba(0,0,0,0.15);
+    }
+
+    .card-text-date {
+        font-size: 12px;
+        color: #5e5e5e;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: row-reverse;
+
+        .bi-heart-fill {
+            flex: auto;
+            color: blue;
+            cursor: pointer;
+
+
+            &.-active {
+                color: red;
+            }
+        }
+    }
+
+    .actions2 {
+        .bi.bi-trash {
+            color: red;
+            cursor: pointer;
+        }
+
+        .bi.bi-gear-fill {
+            text-decoration: none;
+            color: blue;
+        }
+    }
+}

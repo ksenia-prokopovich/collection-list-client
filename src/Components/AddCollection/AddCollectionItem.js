@@ -9,15 +9,19 @@ class AddCollectionItem extends React.Component {
         this.state = {
             title: '',
             description: '',
+            collectionId: props.match.params.collectionId,
             id: props.match.params.id
         }
+    }
+
+    componentWillMount() {
         if (this.state.id) {
             this.loadCollectionItem()
         }
     }
 
     add() {
-        fetch('http://localhost:8000/collections/items/create', {
+        fetch('http://localhost:8000/collections/items/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,8 +33,7 @@ class AddCollectionItem extends React.Component {
             }),
         })
             .then(() => {
-                window.open(process.env.PUBLIC_URL + "/#/items", '_self')
-                document.location.reload();
+                this.props.history.push(`/${this.state.collectionId}/items`)
             });
     }
 
@@ -47,7 +50,7 @@ class AddCollectionItem extends React.Component {
         })
             .then(response => handleErrors(response))
             .then(() => {
-                this.props.history.push(process.env.PUBLIC_URL + "/#/items")
+                this.props.history.push(`/${this.state.collectionId}/items`)
             });
     }
 
@@ -82,7 +85,6 @@ class AddCollectionItem extends React.Component {
 
     render() {
         return <div className="form-collection container">
-            <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputTitle">Title</label>
                     <input type="text" value={this.state.title} className="form-control" id="exampleInputTitle"
@@ -93,8 +95,7 @@ class AddCollectionItem extends React.Component {
                     <textarea rows="5" value={this.state.description} className="form-control" id=" exampleInputTitle"
                               name=" content" onChange={this.descriptionChange.bind(this)}/>
                 </div>
-                <button type="submit" className=" btn btn-dark" onClick={this.onSave.bind(this)}>Save</button>
-            </form>
+                <button type="submit" className=" btn btn-secondary" onClick={this.onSave.bind(this)}>Save</button>
         </div>
     }
 }

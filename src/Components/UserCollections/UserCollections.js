@@ -1,13 +1,16 @@
 import React from 'react';
 import './UserCollections.scss';
 
+//import {handleErrors} from "../../utils/error-handler";
+
 class UserCollections extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             userCollections: [],
-            collectionId: props.match.params.id,
+            collectionId: props.match.params.collectionId,
+            user: localStorage.getItem("user")
         };
         this.loadUserCollections()
     }
@@ -27,29 +30,31 @@ class UserCollections extends React.Component {
 
     render() {
         return <div className="collection-item-list">
-            <a href={"/#/" + this.state.collectionId + "/add"}>
-                <button type="button" className="btn btn-secondary -add">Add</button>
+            <a href={"/" + this.state.collectionId + "/add"}>
+                {this.state.user && <button type="button" className="btn btn-secondary -add">Add</button>}
             </a>
             {this.state.userCollections.map(item =>
-            <div className="card mb-3">
-                <div className="row g-0">
-                        <div>
-                            {/*<div className="col-md-8">*/}
-                            {/*    <img src="..." className="img-fluid rounded-start" alt="..."/>*/}
-                            {/*</div>*/}
+                <div className="card mb-3">
+                    <div className="row g-0">
+                        <div className="card-body-list">
                             <div>
                                 <div className="card-body">
-                                    <a href={"/#/"}><h5 className="card-title">{item.title}</h5></a>
+                                    <a href={"/" + this.state.collectionId + "/items/" + item.id}><h5
+                                        className="card-title">{item.title}</h5></a>
                                     <p className="card-text">{item.description}</p>
                                 </div>
-                                <div className="actions">
-                                    <button type="button" className="btn btn-danger" onClick={(id) => this.delete(item.id)}>Delete</button>
-                                    <a href={"/#/" + item.id + "/edit-items"}><button type="button" className="btn btn-link">Edit</button></a>
-                                </div>
+                                    <div className="actions">
+                                        {this.state.user && <button type="button" className="btn btn-danger"
+                                                onClick={() => this.delete(item.id)}>Delete
+                                        </button>}
+                                        <a href={"/" + item.id + "/edit-items"}>
+                                            {this.state.user && <button type="button" className="btn btn-link">Edit</button>}
+                                        </a>
+                                    </div>
                             </div>
                         </div>
+                    </div>
                 </div>
-            </div>
             )}
         </div>
     }
