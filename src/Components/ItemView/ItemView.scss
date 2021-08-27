@@ -5,6 +5,12 @@
         margin-top: 20px;
     }
 
+    .card-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+
     .form-label {
         font-weight: bold;
     }
@@ -20,6 +26,10 @@
     .card-text-date {
         font-size: 12px;
         color: #5e5e5e;
+    }
+
+    .bi-person-circle {
+        color: black;
     }
 
     .actions {

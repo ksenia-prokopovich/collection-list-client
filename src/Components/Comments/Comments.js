@@ -84,7 +84,7 @@ class Comments extends React.Component {
                         {this.state.user && this.state.user.id === item.userId && <button type="button" className="btn btn-outline-danger trash" onClick={() => this.delete(item.id)}>
                             <i className="bi bi-trash"> </i>
                         </button>}
-                        <span className="user-name">{this.getUserName(item.userId)}</span>
+                        <span className="user-name">{this.getUserName(item.userId)} <a className="bi bi-person-circle"> </a></span>
                     </h5>
                     <p className="card-text">{item.message}</p>
                 </div>

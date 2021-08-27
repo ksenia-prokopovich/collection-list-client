@@ -16,8 +16,10 @@ class ItemView extends React.Component {
             id: props.match.params.id,
             collectionId: props.match.params.collectionId,
             likes: [],
+            users: [],
             user: JSON.parse(localStorage.getItem('user'))
         };
+        this.loadUsers();
     }
 
     componentWillMount() {
@@ -66,14 +68,27 @@ class ItemView extends React.Component {
             .then(likes => this.setState({likes}))
     }
 
+    getUserFirstname(userId) {
+        return userId && this.state.users.length && this.state.users.find(item => item.id === userId).firstname;
+    }
+
+    loadUsers() {
+        fetch('http://localhost:8000/users')
+            .then(response => response.json())
+            .then(users => this.setState({ ...this.state, users }))
+    }
+
     render() {
         return <div className="collection-item-view">
                 <div className="card mb-3">
                 <div className="row g-0">
                     <div className="card-body">
-                        <h5 className="card-title">{this.state.title}</h5>
+                        <h5 className="card-title" title={this.state.title}>{this.state.title}</h5>
                         <p className="card-text">{this.state.description}</p>
-                        <p className="card-text-date">{new Date(this.state.createdAt).toDateString()}</p>
+                        <div className="card-author">
+                            <span className="card-author">Author: {this.getUserFirstname(this.state.userId)} <a className="bi bi-person-circle"> </a></span>
+                            <p className="card-text-date">{new Date(this.state.createdAt).toDateString()}</p>
+                        </div>
                         <div className="actions">
                             {this.state.user && this.state.user.id === this.state.userId && <div className="actions2">
                                 <a href={"/" + this.state.id + "/edit-items"}><i className="bi bi-gear-fill"> </i></a>

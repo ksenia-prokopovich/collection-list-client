@@ -1,6 +1,6 @@
 .collection-list {
 
-    .col{
+    .col {
         margin-top: 15px;
         margin-left: 5%;
         margin-right: 5%;
@@ -33,10 +33,18 @@
     }
 
     .card {
-        box-shadow: 0 8px 30px 0 rgba(0,0,0,0.15);
+        box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .card-author {
+        padding-bottom: 10px;
+        display: block;
+    }
+
+    .bi-person-circle {
+        color: black;
     }
 }
-
 
 
 

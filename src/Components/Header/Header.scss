@@ -13,6 +13,13 @@
         font-size: 32px;
     }
 
+    .navbar-name {
+        font-size: 20px;
+        padding-top: 10px;
+        font-weight: 500;
+        cursor: default;
+    }
+
     .navbar-nav {
         margin-right: 100px;
         align-items: center;
@@ -54,5 +61,9 @@
 
     .bi.bi-moon {
         color: white;
+    }
+
+    .bi-person-circle {
+        color: #00deff
     }
 }

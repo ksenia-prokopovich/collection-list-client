@@ -5,7 +5,7 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: localStorage.getItem("user")
+            user: JSON.parse(localStorage.getItem("user"))
         }
         this.onApplyTheme();
     }
@@ -38,6 +38,9 @@ class Header extends React.Component {
                     <button className="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <div className="collapse navbar-collapse" id="navbarNav">
+                    <div className="navbar-brand">
+                        <p className="navbar-name">{this.state.user.firstname} <a className="bi bi-person-circle"> </a></p>
+                    </div>
                     <ul className="user-nav">
                         <div className="dropdown">
                             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"

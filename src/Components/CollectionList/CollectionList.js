@@ -7,9 +7,17 @@ class CollectionList extends React.Component {
         super(props);
         this.state = {
             collections: [],
-            user: JSON.parse(localStorage.getItem("user"))
+            users: [],
+            user: JSON.parse(localStorage.getItem("user")),
         };
-        this.loadCollections()
+        this.loadCollections();
+        this.loadUsers()
+    }
+
+    loadUsers() {
+        fetch('http://localhost:8000/users')
+            .then(response => response.json())
+            .then(users => this.setState({ ...this.state, users }))
     }
 
     loadCollections() {
@@ -45,6 +53,10 @@ class CollectionList extends React.Component {
             });
     }
 
+    getUserFirstname(userId) {
+        return userId && this.state.users.length && this.state.users.find(collection => collection.id === userId).firstname;
+    }
+
     render() {
         return <div className="collection-list container">
             {this.state.user &&
@@ -55,6 +67,7 @@ class CollectionList extends React.Component {
                         <div className="card-body">
                             <h5 className="card-title">{collection.title}</h5>
                             <p className="card-text">{collection.description}</p>
+                            <span className="card-author">Author: {this.getUserFirstname(collection.userId)} <a className="bi bi-person-circle"> </a></span>
                             <div className="actions">
                                 {this.state.user && this.state.user.id === collection.userId && <button type="button" className="btn btn-danger"
                                                             onClick={() => this.delete(collection.id)}>Delete</button>}
