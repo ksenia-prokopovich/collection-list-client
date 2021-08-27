@@ -7,7 +7,7 @@ class CollectionList extends React.Component {
         super(props);
         this.state = {
             collections: [],
-            user: localStorage.getItem("user")
+            user: JSON.parse(localStorage.getItem("user"))
         };
         this.loadCollections()
     }
@@ -15,7 +15,7 @@ class CollectionList extends React.Component {
     loadCollections() {
         fetch('http://localhost:8000/collections')
             .then(response => response.json())
-            .then(collections => this.setState({ ...this.state, collections }))
+            .then(collections => this.setState({...this.state, collections}))
     }
 
     collectionsChange(event) {
@@ -27,11 +27,12 @@ class CollectionList extends React.Component {
 
     delete(id) {
         fetch('http://localhost:8000/collections/delete/' + id, {
-            method: 'DELETE',})
+            method: 'DELETE',
+        })
             .then(() => this.loadCollections())
     }
 
-    add(){
+    add() {
         fetch('http://localhost:8000/collections/add', {
             method: 'PUT',
             headers: {
@@ -46,24 +47,28 @@ class CollectionList extends React.Component {
 
     render() {
         return <div className="collection-list container">
-            {this.state.user && <button type="button" className="btn btn-secondary" onClick={this.add.bind(this)}>Create...</button>}
-                {this.state.collections.map(collection =>(
+            {this.state.user &&
+            <button type="button" className="btn btn-secondary" onClick={this.add.bind(this)}>Create...</button>}
+            {this.state.collections.map(collection => (
                 <div className="col">
                     <div className="card">
-                        {/*<img src="..." className="card-img-top" alt="..."/>*/}
-                            <div className="card-body">
-                                        <h5 className="card-title">{collection.title}</h5>
-                                        <p className="card-text">{collection.description}</p>
-                                <div className="actions">
-                                    {this.state.user && <button type="button" className="btn btn-danger" onClick={(id) => this.delete(collection.id)}>Delete</button>}
-                                    {this.state.user && <a href={"/" + collection.id + "/edit-collection"}><button type="button" className="btn btn-link">Edit</button></a>}
-                                    <a className="card-link list-link" href={"/" + collection.id + "/items"}>All collection...</a>
-                                </div>
+                        <div className="card-body">
+                            <h5 className="card-title">{collection.title}</h5>
+                            <p className="card-text">{collection.description}</p>
+                            <div className="actions">
+                                {this.state.user && this.state.user.id === collection.userId && <button type="button" className="btn btn-danger"
+                                                            onClick={() => this.delete(collection.id)}>Delete</button>}
+                                <a href={"/" + collection.id + "/edit-collection"}>
+                                    {this.state.user && this.state.user.id === collection.userId && <button type="button" className="btn btn-link">Edit</button>}
+                                </a>
+                                <a className="card-link list-link" href={"/" + collection.id + "/items"}>All
+                                    collection...</a>
                             </div>
+                        </div>
                     </div>
                 </div>
-                ))}
-            </div>
+            ))}
+        </div>
     }
 }
 

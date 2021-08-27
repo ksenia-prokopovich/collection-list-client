@@ -8,7 +8,7 @@ import Registration from "./Components/Registration/Registration";
 import Login from "./Components/Login/Login";
 import NotFound from "./Components/Not-found/Not-found";
 import AddCollectionItem from "./Components/AddCollection/AddCollectionItem";
-import UserCollections from "./Components/UserCollections/UserCollections";
+import ItemCollections from "./Components/ItemCollections/ItemCollections";
 import CreateCollections from "./Components/CreateCollections/CreateCollections";
 import ItemView from "./Components/ItemView/ItemView";
 
@@ -27,7 +27,7 @@ class App extends React.Component {
             <Router basename={process.env.PUBLIC_URL}>
                 <Switch>
                     <Route exact path="/" component={CollectionList}/>
-                    <Route exact path="/:collectionId/items" component={UserCollections}/>
+                    <Route exact path="/:collectionId/items" component={ItemCollections}/>
                     {!this.state.user && <Route path="/sing-up" component={Registration}/>}
                     {!this.state.user && <Route path="/sing-in" component={Login}/>}
                     {this.state.user && <Route path="/:collectionId/add" component={AddCollectionItem}/>}

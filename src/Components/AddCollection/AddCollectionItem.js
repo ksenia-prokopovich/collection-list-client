@@ -9,6 +9,7 @@ class AddCollectionItem extends React.Component {
         this.state = {
             title: '',
             description: '',
+            userId: JSON.parse(localStorage.getItem('user')).id,
             collectionId: props.match.params.collectionId,
             id: props.match.params.id
         }
@@ -29,7 +30,8 @@ class AddCollectionItem extends React.Component {
             body: JSON.stringify({
                 title: this.state.title,
                 description: this.state.description,
-                collectionId: this.state.collectionId
+                collectionId: this.state.collectionId,
+                userId: this.state.userId,
             }),
         })
             .then(() => {

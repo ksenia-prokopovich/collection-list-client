@@ -28,5 +28,47 @@ body {
 .theme-dark * {
   background: rgba(20, 29, 34, 0.84) !important;
   color: white !important;
+  border-color: #f8f9fa;
 }
+
+.theme-dark {
+  .card.mb-3 {
+    border-color: #f8f9fa;
+  }
+
+  .btn-danger{
+    background-color: #a00000 !important;
+  }
+
+  .col {
+    border-color: #f8f9fa;
+  }
+
+  .card-link.list-link {
+    color: rgba(0, 222, 255, 0.82) !important;
+  }
+
+  .form-control {
+    background: rgb(33, 46, 54) !important;
+  }
+
+  .actions {
+    .bi-heart-fill {
+      &.-active {
+        color: red !important;
+      }
+    }
+  }
+
+  .bi.bi-trash {
+      color: red !important;
+  }
+
+  .auth-actions {
+    .nav-link {
+      color: #00deff !important;
+    }
+  }
+}
+
 

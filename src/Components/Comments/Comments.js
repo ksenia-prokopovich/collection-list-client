@@ -11,6 +11,8 @@ class Comments extends React.Component {
             message: '',
             comments: [],
             users: [],
+            userId: localStorage.getItem('user') && JSON.parse(localStorage.getItem('user')).id,
+            user: JSON.parse(localStorage.getItem("user"))
         }
         this.loadComments();
         this.loadUsers();
@@ -79,9 +81,9 @@ class Comments extends React.Component {
             {this.state.comments.map(item =>
                 <div className="card-body-comment">
                     <h5 className="card-title">
-                        <button type="button" className="btn btn-outline-danger trash" onClick={() => this.delete(item.id)}>
+                        {this.state.user && this.state.user.id === item.userId && <button type="button" className="btn btn-outline-danger trash" onClick={() => this.delete(item.id)}>
                             <i className="bi bi-trash"> </i>
-                        </button>
+                        </button>}
                         <span className="user-name">{this.getUserName(item.userId)}</span>
                     </h5>
                     <p className="card-text">{item.message}</p>
