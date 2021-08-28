@@ -26,7 +26,7 @@ class Header extends React.Component {
 
     logOut() {
         localStorage.removeItem("user")
-        window.open('/sing-in', '_self')
+        window.open(process.env.PUBLIC_URL + '/#/sing-in', '_self')
     }
 
     render() {
@@ -54,10 +54,10 @@ class Header extends React.Component {
                         </div>
                         {!this.state.user && <div className="auth-actions">
                             <li className="nav-item">
-                                <a className="nav-link" href={"/sing-in"}>Log In</a>
+                                <a className="nav-link" href={process.env.PUBLIC_URL + "/#/sing-in"}>Log In</a>
                             </li>
                             <li className="nav-item">
-                            <a className="nav-link" href={"/sing-up"}>Sing Up</a>
+                            <a className="nav-link" href={process.env.PUBLIC_URL + "/#/sing-up"}>Sing Up</a>
                             </li>
                         </div>}
                         {this.state.user && <div>

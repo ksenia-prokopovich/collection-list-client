@@ -21,7 +21,7 @@ class Registration extends React.Component {
             body: JSON.stringify({firstname: this.state.firstname, email: this.state.email, password: this.state.password}),
         })
             .then(() => {
-                this.props.history.push(`/sing-in`)
+                this.props.history.push(process.env.PUBLIC_URL + `/#/sing-in`)
             });
     }
 

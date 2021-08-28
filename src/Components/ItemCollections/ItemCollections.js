@@ -60,7 +60,7 @@ class ItemCollections extends React.Component {
                         <div className="card-body-list">
                             <div>
                                 <div className="card-body">
-                                    <a href={"/" + this.state.collectionId + "/items/" + item.id}><h5
+                                    <a href={process.env.PUBLIC_URL + "/#/" + this.state.collectionId + "/items/" + item.id}><h5
                                         className="card-title" title={item.title}>{item.title}</h5></a>
                                     <img src={item.image}/>
                                     <p className="card-text">{item.description}</p>
@@ -69,7 +69,7 @@ class ItemCollections extends React.Component {
                                     <button type="button" className="btn btn-danger"
                                             onClick={() => this.delete(item.id)}>Delete
                                     </button>
-                                    <a href={"/" + item.id + "/edit-items"}>
+                                    <a href={process.env.PUBLIC_URL + "/#/" + item.id + "/edit-items"}>
                                         <button type="button" className="btn btn-link">Edit</button>
                                     </a>
                                     <span className="card-author">Author: {this.getUserFirstname(item.userId)} <a className="bi bi-person-circle"> </a></span>

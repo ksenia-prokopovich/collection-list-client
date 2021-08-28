@@ -37,7 +37,7 @@ class AddCollectionItem extends React.Component {
             }),
         })
             .then(() => {
-                this.props.history.push(`/${this.state.collectionId}/items`)
+                this.props.history.push(process.env.PUBLIC_URL + `/#/${this.state.collectionId}/items`)
             });
     }
 
@@ -55,7 +55,7 @@ class AddCollectionItem extends React.Component {
         })
             .then(response => handleErrors(response))
             .then(() => {
-                this.props.history.push(`/${this.state.collectionId}/items`)
+                this.props.history.push(process.env.PUBLIC_URL + `/#/${this.state.collectionId}/items`)
             });
     }
 

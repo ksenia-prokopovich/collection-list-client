@@ -39,7 +39,7 @@ class CreateCollections extends React.Component {
             }),
         })
             .then(() => {
-                this.props.history.push(`/`)
+                this.props.history.push(process.env.PUBLIC_URL + `/#/`);
             });
     };
 
@@ -57,7 +57,7 @@ class CreateCollections extends React.Component {
         })
             .then(response => handleErrors(response))
             .then(() => {
-                this.props.history.push("/")
+                this.props.history.push(process.env.PUBLIC_URL + "/#/")
             });
     }
 
@@ -108,7 +108,7 @@ class CreateCollections extends React.Component {
                 <input ref={this.state.fileInput} type="file" className="form-control"
                        name="title" onChange={this.imageChange.bind(this)}/>
             </div>
-            <button type="submit" className=" btn btn-secondary" onClick={this.onSave.bind(this)}>Save</button>
+            <button type="submit" className="btn btn-secondary" onClick={this.onSave.bind(this)}>Save</button>
         </div>
     }
 }

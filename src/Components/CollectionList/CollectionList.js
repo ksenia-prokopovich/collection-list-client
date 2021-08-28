@@ -49,7 +49,7 @@ class CollectionList extends React.Component {
             body: JSON.stringify({title: this.state.title, description: this.state.description}),
         })
             .then(() => {
-                window.open("/create-collections", '_self')
+                window.open(process.env.PUBLIC_URL + "/#/create-collections", '_self')
             });
     }
 
@@ -72,10 +72,10 @@ class CollectionList extends React.Component {
                             <div className="actions">
                                 {this.state.user && this.state.user.id === collection.userId && <button type="button" className="btn btn-danger"
                                                             onClick={() => this.delete(collection.id)}>Delete</button>}
-                                <a href={"/" + collection.id + "/edit-collection"}>
+                                <a href={process.env.PUBLIC_URL + "/#/" + collection.id + "/edit-collection"}>
                                     {this.state.user && this.state.user.id === collection.userId && <button type="button" className="btn btn-link">Edit</button>}
                                 </a>
-                                <a className="card-link list-link" href={"/" + collection.id + "/items"}>All
+                                <a className="card-link list-link" href={process.env.PUBLIC_URL + "/#/" + collection.id + "/items"}>All
                                     collection...</a>
                             </div>
                         </div>

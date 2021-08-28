@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { BrowserRouter as Router } from 'react-router-dom'
+import { HashRouter as Router } from 'react-router-dom'
 import Header from './Components/Header/Header';
 import { Switch, Route } from 'react-router-dom';
 import CollectionList from "./Components/CollectionList/CollectionList";

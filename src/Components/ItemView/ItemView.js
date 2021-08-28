@@ -40,7 +40,7 @@ class ItemView extends React.Component {
             method: 'DELETE',
         })
             .then(() => {
-                this.props.history.push(`/${this.state.collectionId}/items`);
+                this.props.history.push(process.env.PUBLIC_URL + `/#/${this.state.collectionId}/items`);
             })
     }
 
@@ -92,7 +92,7 @@ class ItemView extends React.Component {
                         </div>
                         <div className="actions">
                             {this.state.user && this.state.user.id === this.state.userId && <div className="actions2">
-                                <a href={"/" + this.state.id + "/edit-items"}><i className="bi bi-gear-fill"> </i></a>
+                                <a href={process.env.PUBLIC_URL + "/#/" + this.state.id + "/edit-items"}><i className="bi bi-gear-fill"> </i></a>
                                 <i className="bi bi-trash" onClick={() => this.delete(this.state.id)}> </i>
                             </div>}
                             {this.state.user &&
