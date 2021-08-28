@@ -66,6 +66,7 @@ class CollectionList extends React.Component {
                     <div className="card">
                         <div className="card-body">
                             <h5 className="card-title">{collection.title}</h5>
+                            <img src={collection.image}/>
                             <p className="card-text">{collection.description}</p>
                             <span className="card-author">Author: {this.getUserFirstname(collection.userId)} <a className="bi bi-person-circle"> </a></span>
                             <div className="actions">

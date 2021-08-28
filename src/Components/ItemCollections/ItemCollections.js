@@ -62,6 +62,7 @@ class ItemCollections extends React.Component {
                                 <div className="card-body">
                                     <a href={"/" + this.state.collectionId + "/items/" + item.id}><h5
                                         className="card-title" title={item.title}>{item.title}</h5></a>
+                                    <img src={item.image}/>
                                     <p className="card-text">{item.description}</p>
                                 </div>
                                 {this.state.user && this.state.user.id === item.userId && <div className="actions">

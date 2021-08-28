@@ -84,6 +84,7 @@ class ItemView extends React.Component {
                 <div className="row g-0">
                     <div className="card-body">
                         <h5 className="card-title" title={this.state.title}>{this.state.title}</h5>
+                        <img src={this.state.image}/>
                         <p className="card-text">{this.state.description}</p>
                         <div className="card-author">
                             <span className="card-author">Author: {this.getUserFirstname(this.state.userId)} <a className="bi bi-person-circle"> </a></span>

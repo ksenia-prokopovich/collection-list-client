@@ -39,7 +39,7 @@ class Header extends React.Component {
                 </form>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <div className="navbar-brand">
-                        <p className="navbar-name">{this.state.user.firstname} <a className="bi bi-person-circle"> </a></p>
+                        <p className="navbar-name">{this.state.user && this.state.user.firstname} <a className="bi bi-person-circle"> </a></p>
                     </div>
                     <ul className="user-nav">
                         <div className="dropdown">
